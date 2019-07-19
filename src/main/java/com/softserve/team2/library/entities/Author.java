@@ -2,11 +2,11 @@ package com.softserve.team2.library.entities;
 
 public class Author {
   private int id;
-  private int name;
+  private String name;
 
   public Author() {}
 
-  public Author(int id, int name) {
+  public Author(int id, String name) {
     this.id = id;
     this.name = name;
   }
@@ -19,11 +19,11 @@ public class Author {
     this.id = id;
   }
 
-  public int getName() {
+  public String getName() {
     return name;
   }
 
-  public void setName(int name) {
+  public void setName(String name) {
     this.name = name;
   }
 
