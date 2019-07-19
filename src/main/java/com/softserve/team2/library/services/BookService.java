@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class BookService {
     private Connection connection;
-    private boolean available;
+//    private boolean available;
 
     public BookService() {
         connection = Connector.getConnection();
