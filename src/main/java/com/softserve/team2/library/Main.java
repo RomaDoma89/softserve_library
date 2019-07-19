@@ -1,15 +1,17 @@
 package com.softserve.team2.library;
 
+import com.softserve.team2.library.entities.Author;
+
 public class Main {
   public static void main(String[] args) {
     System.out.println("just for start...");
     AuthorP authorP =new AuthorP();
 
-    AuthorDAO authorDAO =new AuthorDAO();
-    authorDAO.setId(15);
+    Author author =new Author();
+    author.setId(16);
 
-    authorDAO.setName("Marian");
-    authorP.insertAuthor(authorDAO);
+    author.setName("Mariann");
+    authorP.insertAuthor(author);
 
   }
 }
