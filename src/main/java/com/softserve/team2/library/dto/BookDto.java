@@ -4,7 +4,18 @@ public class BookDto {
     private int id;
     private String title;
     private int available;
+    private String author;
 
+
+
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public int getAvailable() {
         return available;
@@ -33,7 +44,12 @@ public class BookDto {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "BookDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", available=" + available +
+                ", author='" + author + '\'' +
+                '}';
     }
 }
 
