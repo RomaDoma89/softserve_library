@@ -13,11 +13,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadeServices {
+public class ReaderServices {
   private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
   private Connection connection;
 
-  public ReadeServices() {
+  public ReaderServices() {
     connection = Connector.getConnection();
   }
 
@@ -101,7 +101,7 @@ public class ReadeServices {
         readerDto.setLocalDate(LocalDate.parse(resultSet.getString("registration_day"), formatter));
       }
 
-    } catch (SQLException e) {
+    } catch (SQLException | NullPointerException e) {
       e.printStackTrace();
     }
 

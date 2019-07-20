@@ -45,7 +45,7 @@ public class BookService {
         avg.add(DAYS.between(firstLocalDate, secondLocalDate));
       }
       bookDto.setAvgOfReading(avg.stream().mapToLong(a -> a).average().getAsDouble());
-    } catch (SQLException e) {
+    } catch (SQLException | NoSuchElementException e) {
       e.printStackTrace();
     }
     return bookDto;
@@ -83,7 +83,7 @@ public class BookService {
       while (resultSet.next()) {
         bookDto.setTitle(resultSet.getString(1));
       }
-    } catch (SQLException e) {
+    } catch (SQLException | NoSuchElementException e) {
       e.printStackTrace();
     }
 
@@ -122,7 +122,7 @@ public class BookService {
       while (resultSet.next()) {
         bookDto.setTitle(resultSet.getString(1));
       }
-    } catch (SQLException e) {
+    } catch (SQLException | NoSuchElementException e) {
       e.printStackTrace();
     }
 
@@ -188,7 +188,7 @@ public class BookService {
       while (resultSet.next()) {
         bookDto.setCount(resultSet.getInt("COUNT(library.reader_story.id)"));
       }
-    } catch (SQLException e) {
+    } catch (SQLException | IllegalArgumentException e) {
       e.printStackTrace();
     }
     return bookDto;
