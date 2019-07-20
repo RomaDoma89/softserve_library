@@ -1,18 +1,20 @@
 package com.softserve.team2.library.services;
 
-import com.softserve.team2.library.dto.BookDto;
-import com.softserve.team2.library.dto.ReaderDao;
-import com.softserve.team2.library.entities.Author;
+import com.softserve.team2.library.dto.ReaderDto;
 import com.softserve.team2.library.jdbc.Connector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReadeServices {
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private Connection connection;
 
     public ReadeServices() {
@@ -20,9 +22,9 @@ public class ReadeServices {
     }
 
 
-    public ReaderDao statisticOfReader(String name) {
-        ReaderDao readerDao = new ReaderDao();
-        readerDao.setName(name);
+    public ReaderDto statisticOfReader(String name) {
+        ReaderDto readerDto = new ReaderDto();
+        readerDto.setName(name);
         List<String> titles;
         try {
             titles = new ArrayList<>();
@@ -37,7 +39,7 @@ public class ReadeServices {
                 titles.add(resultSet.getString("title"));
 
             }
-            readerDao.setListOfreadedBooks(titles);
+            readerDto.setListOfReaderBooks(titles);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,7 +58,7 @@ public class ReadeServices {
                 titles.add(resultSet.getString("title"));
 
             }
-            readerDao.setListOfNotReturnedBooks(titles);
+            readerDto.setListOfNotReturnedBooks(titles);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,7 +72,7 @@ public class ReadeServices {
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                readerDao.setDate(resultSet.getString("registration_day"));
+                readerDto.setLocalDate(LocalDate.parse(resultSet.getString("registration_day"), formatter));
 
             }
 
@@ -78,8 +80,55 @@ public class ReadeServices {
             e.printStackTrace();
         }
 
-        return readerDao;
+        return readerDto;
     }
 
+    //8
+    public List<ReaderDto> fullStatisticsOfReaders(String dateFrom,String dateTo) {
+        ReaderDto readerDto;
+        List<ReaderDto> listReadersDto = new ArrayList<>();
 
+        LocalDate localDateNow = LocalDate.now();
+        LocalDate timeOfUsingLibrary;
+        try {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT library.readers.name, MIN(library.reader_story.time_take) as registration_time " +
+                            "FROM library.reader_story\n" +
+                            "JOIN library.readers ON library.readers.id = library.reader_story.id_reader\n" +
+                            "GROUP BY library.readers.id;");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                readerDto = new ReaderDto();
+                readerDto.setName(resultSet.getString("name"));
+                readerDto.setDayOfUsingLibrary(
+                        ChronoUnit.DAYS.between(LocalDate.parse(resultSet.getString("registration_time"), formatter), localDateNow));
+                listReadersDto.add(readerDto);
+            }
+
+            preparedStatement = connection.prepareStatement("SELECT AVG(YEAR(NOW()) - YEAR(library.readers.birthday)) as avg_age FROM library.readers;");
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                ReaderDto.averageAgeOfReaders = resultSet.getDouble("avg_age");
+            }
+            preparedStatement = connection.prepareStatement(
+                    "SELECT AVG(counter.take_count) " +
+                            "FROM\n" +
+                            "(SELECT COUNT(library.reader_story.time_take) as take_count FROM library.reader_story\n" +
+                            "WHERE library.reader_story.time_take " +
+                            "BETWEEN ? AND ? \n" +
+                            "GROUP BY library.reader_story.id_reader)" +
+                            "AS counter;");
+            preparedStatement.setString(1,dateFrom);
+            preparedStatement.setString(2,dateTo);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                ReaderDto.averageTimeOfUsing = resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listReadersDto;
+    }
 }

@@ -36,6 +36,7 @@ public class BookService {
 //                System.out.println(i);
                 bookDto.setTitle(title);
                 bookDto.setAvailable(resultSet.getInt("available"));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,7 +49,8 @@ public class BookService {
         BookDto bookDto;
         List<BookDto> listBooksDto = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT library.books.title as title" +
+            PreparedStatement preparedStatement = connection.prepareStatement("" +
+                    "SELECT library.books.title as title" +
                     " FROM library.books\n" +
                     "\tJOIN library.book_authors ON books.id = book_authors.id_book\n" +
                     "    JOIN library.authors ON authors.id = book_authors.id_author\n" +
