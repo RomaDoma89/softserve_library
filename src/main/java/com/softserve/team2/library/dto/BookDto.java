@@ -1,56 +1,67 @@
 package com.softserve.team2.library.dto;
 
 public class BookDto {
-    private int id;
-    private String title;
-    private int available;
-    private String author;
+  private int id;
+  private int idCopy;
+  private String title;
+  private int available;
+  private String author;
 
+  public String getAuthor() {
+    return author;
+  }
 
+  public void setAuthor(String author) {
+    this.author = author;
+  }
 
+  public int getAvailable() {
+    return available;
+  }
 
-    public String getAuthor() {
-        return author;
-    }
+  public void setAvailable(int available) {
+    this.available = available;
+  }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public int getAvailable() {
-        return available;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setAvailable(int available) {
-        this.available = available;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public void setId(int id) {
+  public int getIdCopy() {
+    return idCopy;
+  }
 
-        this.id = id;
-    }
+  public void setIdCopy(int idCopy) {
+    this.idCopy = idCopy;
+  }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @Override
-    public String toString() {
-        return "BookDto{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", available=" + available +
-                ", author='" + author + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "BookDto{"
+        + "id="
+        + id
+        + ", idCopy="
+        + idCopy
+        + ", title='"
+        + title
+        + '\''
+        + ", available="
+        + available
+        + ", author='"
+        + author
+        + '\''
+        + '}';
+  }
 }
-
-
