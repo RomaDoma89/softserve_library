@@ -13,14 +13,20 @@ import java.util.*;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+/** */
 public class BookService {
   private Connection connection;
   //    private boolean available;
 
+  /**  */
   public BookService() {
     connection = Connector.getConnection();
   }
 
+  /**
+   * @param title
+   * @return
+   */
   public BookDto findAverageReadingBook(String title) {
     String query =
         "SELECT library.reader_story.time_take, library.reader_story.time_return FROM library.reader_story\n"

@@ -4,4 +4,8 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>ReaderServlet</servlet-name>
+        <servlet-class>com.softserve.team2.library.servlets.ReaderServlet</servlet-class>
+    </servlet>
 </web-app>
