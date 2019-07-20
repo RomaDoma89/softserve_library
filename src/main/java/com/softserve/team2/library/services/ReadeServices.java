@@ -1,7 +1,6 @@
 package com.softserve.team2.library.services;
 
 import com.softserve.team2.library.dto.ReaderDto;
-import com.softserve.team2.library.entities.Reader;
 import com.softserve.team2.library.jdbc.Connector;
 
 import java.sql.Connection;
@@ -162,5 +161,73 @@ public class ReadeServices {
       e.printStackTrace();
     }
     return listReadersDto;
+  }
+
+  /**
+   * Finds an average age of readers of the specify book's title.
+   *
+   * @param title of a book for searching.
+   * @return ReaderDto object contained average age of readers and the title of the book.
+   */
+  public ReaderDto getAvgAgeByBook(String title) {
+
+    ReaderDto ageDto = new ReaderDto();
+    ageDto.setTitle(title);
+
+    try {
+      PreparedStatement preparedStatement =
+              connection.prepareStatement(
+                      "SELECT AVG(YEAR(NOW()) - YEAR(readers.birthday)) as avg_age FROM readers "
+                              + "JOIN reader_story ON readers.id = reader_story.id_reader "
+                              + "JOIN books ON books.id = reader_story.id_book "
+                              + "WHERE books.title = ?");
+
+      preparedStatement.setString(1, title);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      if (resultSet.next()) {
+
+        int avgAge = resultSet.getInt("avg_age");
+        ageDto.setAvgAge(avgAge);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return ageDto;
+  }
+
+  /**
+   * Finds an average age of readers of the specify author's name.
+   *
+   * @param name of an author for searching.
+   * @return ReaderDto object contained average age of readers and the name of the author.
+   */
+  public ReaderDto getAvgAgeByAuthor(String name) {
+
+    ReaderDto readerDto = new ReaderDto();
+    readerDto.setAuthor(name);
+
+    try {
+      PreparedStatement preparedStatement =
+              connection.prepareStatement(
+                      "SELECT AVG(YEAR(NOW()) - YEAR(readers.birthday)) as avg_age FROM readers "
+                              + "JOIN reader_story ON readers.id = reader_story.id_reader "
+                              + "JOIN book_authors ON book_authors.id_book = reader_story.id_book "
+                              + "JOIN authors ON authors.id = book_authors.id_author "
+                              + "WHERE authors.name = ?;");
+      preparedStatement.setString(1, name);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      if (resultSet.next()) {
+
+        int avgAge = resultSet.getInt("avg_age");
+        readerDto.setAvgAge(avgAge);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return readerDto;
   }
 }

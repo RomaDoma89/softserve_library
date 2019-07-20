@@ -241,4 +241,39 @@ public class BookService {
     }
     return listBooksDto;
   }
+
+
+  /**
+   * Checks and return all copies of a specified book with their availability.
+   *
+   * @param title of a book for searching.
+   * @return a list of BookDto contained the title, id of a copy and it's availability.
+   */
+  public List<BookDto> findCopiesAvailabilityByTitle(String title) {
+    BookDto bookCopy;
+    List<BookDto> listBooksDto = new ArrayList<>();
+
+    try {
+      PreparedStatement preparedStatement =
+              connection.prepareStatement(
+                      "SELECT id_copy, available from book_copies\n"
+                              + "JOIN books ON books.id = book_copies.id_book\n"
+                              + "WHERE books.title = ?");
+
+      preparedStatement.setString(1, title);
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      while (resultSet.next()) {
+        bookCopy = new BookDto();
+        bookCopy.setTitle(title);
+        bookCopy.setIdCopy(resultSet.getInt("id_copy"));
+        bookCopy.setAvailable(resultSet.getInt("available"));
+        listBooksDto.add(bookCopy);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return listBooksDto;
+  }
 }

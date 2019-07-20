@@ -9,6 +9,8 @@ public class ReaderDto {
   private int user_id;
   private String name;
   private String author;
+  private String title;
+  private int avgAge;
   private String dateOfBirthday;
   private long dayOfUsingLibrary;
   private LocalDate localDate;
@@ -64,6 +66,22 @@ public class ReaderDto {
     this.author = author;
   }
 
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public int getAvgAge() {
+    return avgAge;
+  }
+
+  public void setAvgAge(int avgAge) {
+    this.avgAge = avgAge;
+  }
+
   public long getDayOfUsingLibrary() {
     return dayOfUsingLibrary;
   }
@@ -103,13 +121,14 @@ public class ReaderDto {
         + user_id
         + ", name='"
         + name
-        + '\''
         + ", author='"
         + author
-        + '\''
+        + ", title='"
+        + title
+        + ", avgAge="
+        + avgAge
         + ", dateOfBirthday='"
         + dateOfBirthday
-        + '\''
         + ", dayOfUsingLibrary="
         + dayOfUsingLibrary
         + ", localDate="
