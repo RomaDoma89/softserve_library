@@ -29,6 +29,6 @@ public class BooksAuthors {
 
   @Override
   public String toString() {
-    return super.toString();
+    return "BooksAuthors{" + "idBook=" + idBook + ", idAuthor=" + idAuthor + '}';
   }
 }
