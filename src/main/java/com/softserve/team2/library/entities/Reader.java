@@ -4,12 +4,14 @@ public class Reader {
 
   private int id;
   private String name;
+  private String birthday;
 
   public Reader() {}
 
-  public Reader(int id, String name) {
+  public Reader(int id, String name, String birthday) {
     this.id = id;
     this.name = name;
+    this.birthday = birthday;
   }
 
   public int getId() {
@@ -28,8 +30,25 @@ public class Reader {
     this.name = name;
   }
 
+  public String getBirthday() {
+    return birthday;
+  }
+
+  public void setBirthday(String birthday) {
+    this.birthday = birthday;
+  }
+
   @Override
   public String toString() {
-    return super.toString();
+    return "Reader{"
+        + "id="
+        + id
+        + ", name='"
+        + name
+        + '\''
+        + ", birthday='"
+        + birthday
+        + '\''
+        + '}';
   }
 }
