@@ -7,13 +7,13 @@ public class ReaderStory {
   private int idReader;
   private int idBook;
   private int IdBookCopy;
-  private Date timeTake;
-  private Date timeReturn;
+  private String timeTake;
+  private String timeReturn;
 
   public ReaderStory() {}
 
   public ReaderStory(
-      int id, int idReader, int idBook, int idBookCopy, Date timeTake, Date timeReturn) {
+      int id, int idReader, int idBook, int idBookCopy, String timeTake, String timeReturn) {
     this.id = id;
     this.idReader = idReader;
     this.idBook = idBook;
@@ -54,24 +54,37 @@ public class ReaderStory {
     IdBookCopy = idBookCopy;
   }
 
-  public Date getTimeTake() {
+  public String getTimeTake() {
     return timeTake;
   }
 
-  public void setTimeTake(Date timeTake) {
+  public void setTimeTake(String timeTake) {
     this.timeTake = timeTake;
   }
 
-  public Date getTimeReturn() {
+  public String getTimeReturn() {
     return timeReturn;
   }
 
-  public void setTimeReturn(Date timeReturn) {
+  public void setTimeReturn(String timeReturn) {
     this.timeReturn = timeReturn;
   }
 
   @Override
   public String toString() {
-    return super.toString();
+    return "ReaderStory{"
+        + "id="
+        + id
+        + ", idReader="
+        + idReader
+        + ", idBook="
+        + idBook
+        + ", IdBookCopy="
+        + IdBookCopy
+        + ", timeTake="
+        + timeTake
+        + ", timeReturn="
+        + timeReturn
+        + '}';
   }
 }

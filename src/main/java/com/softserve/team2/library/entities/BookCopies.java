@@ -39,6 +39,13 @@ public class BookCopies {
 
   @Override
   public String toString() {
-    return super.toString();
+    return "BookCopies{"
+        + "idCopy="
+        + idCopy
+        + ", idBook="
+        + idBook
+        + ", isAvailable="
+        + isAvailable
+        + '}';
   }
 }
