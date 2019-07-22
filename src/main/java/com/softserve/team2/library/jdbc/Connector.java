@@ -32,11 +32,13 @@ public class Connector {
         propObj.setProperty("user", DB_USER);
         propObj.setProperty("password", DB_PASSWORD);
         String url = DB_LINK + DB_NAME + DB_TIME_ZONE;
-
+        Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection(url, propObj);
 
       } catch (SQLException e) {
         System.out.println("Connection failed");
+        e.printStackTrace();
+      } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
     }

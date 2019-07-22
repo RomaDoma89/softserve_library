@@ -5,13 +5,12 @@ import com.softserve.team2.library.dto.BookDto;
 import com.softserve.team2.library.services.BookService;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/bookTitle")
+
 public class BookServlet  extends HttpServlet {
 
     @Override
@@ -23,9 +22,9 @@ public class BookServlet  extends HttpServlet {
         BookDto bookDto= new BookDto();
         bookDto.setTitle("Effective Java");
         bookDto.setAvailable(6);
-            req.setAttribute("title",bookDto);
-            req.setAttribute("ava",bookDto);
-            req.getRequestDispatcher("WEB-INF/static/availableBook.jsp").forward(req,resp);
+            req.setAttribute("title",1);
+            req.setAttribute("ava",bookDto.getAvailable());
+            getServletContext().getRequestDispatcher("/menu.jsp").forward(req,resp);
 
 
     }
