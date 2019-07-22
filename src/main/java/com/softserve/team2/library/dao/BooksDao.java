@@ -29,7 +29,7 @@ public class BooksDao {
     try {
       PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT);
       preparedStatement.setString(1, title);
-      preparedStatement.executeQuery();
+      preparedStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
