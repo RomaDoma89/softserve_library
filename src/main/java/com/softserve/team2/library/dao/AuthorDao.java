@@ -15,8 +15,8 @@ public class AuthorDao {
   private Connection connection;
 
   private static final String SQL_INSERT = "INSERT INTO authors (name) VALUES (?);";
-  private static final String SQL_SELECT_BY_ID = "SELECT id , name FROM authors where name = ?";
-  private static final String SQL_SELECT_BY_NAME = "SELECT id , name FROM authors where id = ?";
+  private static final String SQL_SELECT_BY_ID = "SELECT id , name FROM authors where id = ?";
+  private static final String SQL_SELECT_BY_NAME = "SELECT id , name FROM authors where name = ?";
   private static final String SQL_SELECT_ALL = "SELECT * FROM authors";
   private static final String SQL_DELETE = "DELETE FROM authors WHERE id = ?;";
   private static final String SQL_UPDATE = "UPDATE authors SET name = ? WHERE id = ?;";
@@ -29,7 +29,7 @@ public class AuthorDao {
     try {
       PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT);
       preparedStatement.setString(1, name);
-      preparedStatement.executeQuery();
+      preparedStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }

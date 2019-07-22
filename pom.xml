@@ -25,14 +25,18 @@
             <version>8.0.16</version>
         </dependency>
 
-<!--        Це не видаляти-->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.0</version>
             <scope>provided</scope>
         </dependency>
-<!--        Це не видаляти-->
 
         <dependency>
             <groupId>junit</groupId>
