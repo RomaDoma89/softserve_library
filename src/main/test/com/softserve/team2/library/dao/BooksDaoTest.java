@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 /**
