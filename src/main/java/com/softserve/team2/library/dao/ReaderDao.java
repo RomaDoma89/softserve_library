@@ -15,9 +15,13 @@ public class ReaderDao {
   private Connection connection;
 
   private static final String SQL_INSERT = "INSERT INTO readers (name, birthday) VALUES (?, ?);";
-  private static final String SQL_SELECT_BY_ID = "SELECT id, name, birthday FROM readers WHERE id = ?";
-  private static final String SQL_SELECT_BY_NAME = "SELECT id, name, birthday FROM readers WHERE name = ?";
+  private static final String SQL_SELECT_BY_ID =
+      "SELECT id, name, birthday FROM readers WHERE id = ?";
+  private static final String SQL_SELECT_BY_NAME =
+      "SELECT id, name, birthday FROM readers WHERE name = ?";
   private static final String SQL_SELECT_ALL = "SELECT * FROM readers";
+  private static final String SQL_UPDATE =
+      "UPDATE readers SET name = ?, birthday = ? WHERE id = ?;";
   private static final String SQL_DELETE = "DELETE FROM readers WHERE id = ?;";
 
   public ReaderDao() {
@@ -28,8 +32,8 @@ public class ReaderDao {
     try {
       PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT);
       preparedStatement.setString(1, name);
-      preparedStatement.setString(1, birthday);
-      preparedStatement.executeQuery();
+      preparedStatement.setString(2, birthday);
+      preparedStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -86,6 +90,20 @@ public class ReaderDao {
       e.printStackTrace();
     }
     return readers;
+  }
+
+  public boolean update(Reader reader) {
+    boolean updated = false;
+    try {
+      PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE);
+      preparedStatement.setString(1, reader.getName());
+      preparedStatement.setString(2, reader.getBirthday());
+      preparedStatement.setInt(3, reader.getId());
+      updated = preparedStatement.executeUpdate() > 0;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return updated;
   }
 
   public boolean delete(int id) {
