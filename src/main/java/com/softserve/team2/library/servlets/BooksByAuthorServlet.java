@@ -18,11 +18,11 @@ public class BooksByAuthorServlet extends HttpServlet {
       throws ServletException, IOException {
     BookService bookService = new BookService();
     String authorName = req.getParameter("author");
-//    String authorName = req.getParameter("Joshua Bloch");
+    //    String authorName = req.getParameter("Joshua Bloch");
 
     List<BookDto> listBookDto = bookService.findBooksByAuthor(authorName);
     req.setAttribute("listBookDto", listBookDto);
     System.out.println(listBookDto);
-    req.getRequestDispatcher("WEB-INF/views/booksByAuthor.jsp").forward(req,resp);
+    req.getRequestDispatcher("WEB-INF/views/booksByAuthor.jsp").forward(req, resp);
   }
 }

@@ -16,7 +16,7 @@ public class Connector {
   private static final String DB_NAME = "library";
   private static final String DB_USER = "root";
 //    private static final String DB_PASSWORD = "root";
-  private static final String DB_PASSWORD = "12345milan";
+  private static final String DB_PASSWORD = "1123581321";
   private static final String DB_TIME_ZONE = "?serverTimezone=UTC";
   private static Connection connection;
 

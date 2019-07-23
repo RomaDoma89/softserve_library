@@ -5,20 +5,6 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
         version="4.0">
 
-    <!-- Config here. -->
-
-<!--<servlet>-->
-<!--    <servlet-name>BookServlet</servlet-name>-->
-<!--    <servlet-class>com.softserve.team2.library.servlets.BookServlet</servlet-class>-->
-<!--</servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>BookServlet</servlet-name>-->
-<!--        <url-pattern>/book</url-pattern>-->
-<!--    </servlet-mapping>-->
-<!--    -->
-
-
-
 
     <servlet>
         <servlet-name>appealStatistic</servlet-name>
@@ -29,7 +15,6 @@
         <servlet-name>appealStatistic</servlet-name>
         <url-pattern>/appealStatistic</url-pattern>
     </servlet-mapping>
-
 
 
     <servlet>
@@ -43,8 +28,6 @@
     </servlet-mapping>
 
 
-
-    
     <servlet>
         <servlet-name>availableBookForm</servlet-name>
         <jsp-file>/WEB-INF/views/availableBookForm.jsp</jsp-file>
@@ -64,6 +47,117 @@
     <servlet-mapping>
         <servlet-name>booksByAuthorForm</servlet-name>
         <url-pattern>/booksByAuthorForm</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>inputInfo</servlet-name>
+        <jsp-file>/WEB-INF/views/inputInfo.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>inputInfo</servlet-name>
+        <url-pattern>/inputInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getInfo</servlet-name>
+        <jsp-file>/WEB-INF/views/getInfo.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getInfo</servlet-name>
+        <url-pattern>/getInfo</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>getAvgAge</servlet-name>
+        <jsp-file>/WEB-INF/views/getAvgAge.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getAvgAge</servlet-name>
+        <url-pattern>/getAvgAge</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>inputAvgAge</servlet-name>
+        <jsp-file>/WEB-INF/views/inputAvgAge.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>inputAvgAge</servlet-name>
+        <url-pattern>/inputAvgAge</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>getBList</servlet-name>
+        <jsp-file>/WEB-INF/views/getBList.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getBList</servlet-name>
+        <url-pattern>/getBList</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>getPopular</servlet-name>
+        <jsp-file>/WEB-INF/views/getPopular.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getPopular</servlet-name>
+        <url-pattern>/getPopular</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>inputGetPopular</servlet-name>
+        <jsp-file>/WEB-INF/views/inputGetPopular.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>inputGetPopular</servlet-name>
+        <url-pattern>/inputGetPopular</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>statisticOfBook</servlet-name>
+        <jsp-file>/WEB-INF/views/statisticOfBook.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>statisticOfBook</servlet-name>
+        <url-pattern>/statisticOfBook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>inputPeriod</servlet-name>
+        <jsp-file>/WEB-INF/views/inputGetByPeriod.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>inputPeriod</servlet-name>
+        <url-pattern>/inputPeriod</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getByPeriod</servlet-name>
+        <jsp-file>/WEB-INF/views/getByPeriod.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getByPeriod</servlet-name>
+        <url-pattern>/getByPeriod</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>inputBookStat</servlet-name>
+        <jsp-file>/WEB-INF/views/inputBookStat.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>inputBookStat</servlet-name>
+        <url-pattern>/inputBookStat</url-pattern>
     </servlet-mapping>
 </web-app>
 
