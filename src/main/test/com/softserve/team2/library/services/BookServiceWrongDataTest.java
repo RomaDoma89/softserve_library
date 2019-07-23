@@ -21,12 +21,12 @@ public class BookServiceWrongDataTest {
   private BookService bookService;
 
   @Before
-  public void before() throws Exception {
+  public void before() {
     bookService = new BookService();
   }
 
   @After
-  public void after() throws Exception {}
+  public void after() {}
 
   /**
    * Method: findAverageReadingBook(String title). Try to put <code>WRONG_DATA</code> as the
