@@ -1,6 +1,5 @@
 package com.softserve.team2.library.servlets;
 
-
 import com.softserve.team2.library.dto.ReaderDto;
 import com.softserve.team2.library.services.ReaderServices;
 
@@ -14,14 +13,14 @@ import java.util.List;
 
 @WebServlet("/reader_registration")
 public class ReadersRegistrationStatisticServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ReaderServices  readerServices= new ReaderServices();
-        List<ReaderDto> listReaderDto;
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    ReaderServices readerServices = new ReaderServices();
+    List<ReaderDto> listReaderDto;
 
-    System.out.println("im here");
-    listReaderDto=readerServices.getListOfReadersRegistration();
-    req.setAttribute("listReaderDto",listReaderDto);
-        req.getRequestDispatcher("WEB-INF/views/readersRegistrationStatistic.jsp").forward(req,resp);
-    }
+    listReaderDto = readerServices.getListOfReadersRegistration();
+    req.setAttribute("listReaderDto", listReaderDto);
+    req.getRequestDispatcher("WEB-INF/views/readersRegistrationStatistic.jsp").forward(req, resp);
+  }
 }

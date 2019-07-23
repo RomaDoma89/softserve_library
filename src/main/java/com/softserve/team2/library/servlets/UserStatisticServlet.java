@@ -19,22 +19,21 @@ public class UserStatisticServlet extends HttpServlet {
       throws ServletException, IOException {
     String reader = req.getParameter("name");
     String select = req.getParameter("select");
-    req.setAttribute("name",reader);
-      ReaderServices readerServices=new ReaderServices();
-      List<BookDto>listOfBook;
+    req.setAttribute("name", reader);
+    ReaderServices readerServices = new ReaderServices();
+    List<BookDto> listOfBook;
     if (select.equals("value1")) {
-       listOfBook= readerServices.getReadBook(reader);
-      System.out.println(listOfBook);
-        req.setAttribute("listOfBook",listOfBook);
+      listOfBook = readerServices.getReadBook(reader);
+      req.setAttribute("listOfBook", listOfBook);
       req.getRequestDispatcher("WEB-INF/views/userStatisticRead.jsp").forward(req, resp);
     } else if (select.equals("value2")) {
-       listOfBook= readerServices.getNotReturnedBook(reader);
-       req.setAttribute("listOfBook",listOfBook);
+      listOfBook = readerServices.getNotReturnedBook(reader);
+      req.setAttribute("listOfBook", listOfBook);
       req.getRequestDispatcher("WEB-INF/views/userStatisticOnHand.jsp").forward(req, resp);
 
     } else {
-      ReaderDto readerDto= readerServices.getRegisterDate(reader);
-      req.setAttribute("readerDto",readerDto);
+      ReaderDto readerDto = readerServices.getRegisterDate(reader);
+      req.setAttribute("readerDto", readerDto);
       req.getRequestDispatcher("WEB-INF/views/userStatisticRegistration.jsp").forward(req, resp);
     }
   }
