@@ -162,6 +162,7 @@ public class BookService {
       ResultSet resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
         BookDto bookDto = new BookDto();
+        bookDto.setTitle(title);
         bookDto.setCount(resultSet.getInt("COUNT(library.reader_story.id_book_copy)"));
         bookDto.setIdCopy(resultSet.getInt("reader_story.id_book_copy"));
         list.add(bookDto);

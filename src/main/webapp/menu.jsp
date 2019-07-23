@@ -5,6 +5,7 @@
   Time: 12:54
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="ru">
@@ -19,12 +20,12 @@
 <header>
     <nav class="dws-menu">
         <ul>
-            <li><a href="#"><i class="fa fa-home"></i>Всі книги</a></li>
-            <li><a href="#"></i>Пошук за параметром</a>
+            <li><a href=""><i class="fa fa-home"></i>Всі книги</a></li>
+            <li><a href=""></i>Пошук за параметром</a>
                 <ul>
-                    <li><a href="#">Знайти чи доступна книга</a>
+                    <li><a href="">Знайти чи доступна книга</a>
                     </li>
-                    <li><a href="#">Вивести всі книжки по автору</a>
+                    <li><a href="">Вивести всі книжки по автору</a>
                     </li>
                     <li><a href="#">Інформація про користувача</a>
                         <ul>
@@ -33,21 +34,12 @@
                             <li><a href="#">Дата реєстрації</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Дістати список книг виданих по періоду</a></li>
-                    <li><a href="#">Статистика по певній книзі(к-ть використань)</a>
-                        <ul>
-                            <li><a href="#">Загальна</a></li>
-                            <li><a href="#">По примірникам</a></li>
-                            <li><a href="#">Середній час читання</a></li>
-                        </ul>
+                    <li><a href="inputPeriod">Дістати список книг виданих по періоду</a></li>
+                    <li><a href="inputBookStat">Статистика по певній книзі(к-ть використань)</a>
                     </li>
-                    <li><a href="#">Дістати по популярності</a>
-                        <ul>
-                            <li><a href="#">Найбільший рейтинг</a></li>
-                            <li><a href="#">Найменший рейтинг</a></li>
-                        </ul>
+                    <li><a href="inputGetPopular">Дістати по популярності</a>
                     </li>
-                    <li><a href="#">Отримати "чорний список" користувачів</a></li>
+                    <li><a href="getBlackListServlet">Отримати "чорний список" користувачів</a></li>
                     <li><a href="#">Статистика по читачам</a>
                         <ul>
                             <li><a href="#">Середній час читання</a></li>
@@ -55,13 +47,9 @@
                             <li><a href="#">Відвідування</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Ортимати середній вік читачів</a>
-                        <ul>
-                            <li><a href="#">По автору</a></li>
-                            <li><a href="#">По віку</a></li>
-                        </ul>
+                    <li><a href="inputAvgAge">Ортимати середній вік читачів</a>
                     </li>
-                    <li><a href="#">Вивести дані по назві книжки, кількість екземплярів з інформацією про них</a></li>
+                    <li><a href="inputInfo">Вивести дані по назві книжки, кількість екземплярів з інформацією про них</a></li>
 
                 </ul>
             </li>
