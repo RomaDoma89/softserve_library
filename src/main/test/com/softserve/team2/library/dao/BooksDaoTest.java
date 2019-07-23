@@ -28,7 +28,7 @@ public class BooksDaoTest {
   }
 
   @After
-  public void after() throws Exception {}
+  public void after() {}
 
   /** Method: insert(String title) */
   @Test

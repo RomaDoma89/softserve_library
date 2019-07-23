@@ -1,75 +1,143 @@
 package com.softserve.team2.library.dao;
 
-import org.junit.Test; 
-import org.junit.Before; 
-import org.junit.After; 
+import com.softserve.team2.library.entities.Author;
+import com.softserve.team2.library.entities.Books;
+import com.softserve.team2.library.entities.BooksAuthors;
+import org.junit.Assert;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-/** 
-* BooksAuthorsDao Tester. 
-* 
-* @author <Authors name> 
-* @since <pre>Jul 22, 2019</pre> 
-* @version 1.0 
-*/ 
-public class BooksAuthorsDaoTest { 
+import java.util.List;
 
-@Before
-public void before() throws Exception { 
-} 
+/**
+ * BooksAuthorsDao Tester.
+ *
+ * @author Roma Zahorui
+ * @version 1.0
+ */
+public class BooksAuthorsDaoTest {
 
-@After
-public void after() throws Exception { 
-} 
+  private BooksAuthorsDao daoBookAuth;
+  private BooksDao bookDao;
+  private AuthorDao authorDao;
+  private BooksAuthors ba;
 
-/** 
-* 
-* Method: insert(int idBook, int idAuthor) 
-* 
-*/ 
-@Test
-public void testInsert() throws Exception { 
-//TODO: Test goes here... 
-} 
+  private Books book;
 
-/** 
-* 
-* Method: selectByIdBook(int idBook) 
-* 
-*/ 
-@Test
-public void testSelectByIdBook() throws Exception { 
-//TODO: Test goes here... 
-} 
+  private Author author;
 
-/** 
-* 
-* Method: selectByIdAuthor(int idAuthor) 
-* 
-*/ 
-@Test
-public void testSelectByIdAuthor() throws Exception { 
-//TODO: Test goes here... 
-} 
+  @Before
+  public void before() {
+    daoBookAuth = new BooksAuthorsDao();
+    ba = new BooksAuthors();
 
-/** 
-* 
-* Method: selectAll() 
-* 
-*/ 
-@Test
-public void testSelectAll() throws Exception { 
-//TODO: Test goes here... 
-} 
+    bookDao = new BooksDao();
+    book = new Books();
+    book.setTitle("Tester Book: 1st edition.");
 
-/** 
-* 
-* Method: delete(int id_book, int id_author) 
-* 
-*/ 
-@Test
-public void testDelete() throws Exception { 
-//TODO: Test goes here... 
-} 
+    authorDao = new AuthorDao();
+    author = new Author();
+    author.setName("Tester Author");
+  }
 
+  @After
+  public void after() {}
 
-} 
+  /** Method: insert(int idBook, int idAuthor) */
+  @Test
+  public void testInsert() {
+    bookDao.insert(book.getTitle());
+    Books selectedB = bookDao.selectByTitle(book.getTitle());
+
+    authorDao.insert(author.getName());
+    Author selectedA = authorDao.selectByName(author.getName());
+
+    ba.setIdBook(selectedB.getId());
+    ba.setIdAuthor(selectedA.getId());
+
+    daoBookAuth.insert(selectedB.getId(), selectedA.getId());
+    List<BooksAuthors> list = daoBookAuth.selectByIdBook(selectedB.getId());
+
+    boolean contained = false;
+    for (BooksAuthors item : list) {
+      if (item.getIdBook() == ba.getIdBook() && item.getIdAuthor() == ba.getIdAuthor()) {
+        contained = true;
+      }
+    }
+    Assert.assertTrue(contained);
+
+    daoBookAuth.delete(selectedB.getId(), selectedA.getId());
+    authorDao.delete(selectedA.getId());
+    bookDao.delete(selectedB.getId());
+  }
+
+  /** Method: selectByIdBook(int idBook) */
+  @Test
+  public void testSelectByIdBook() {
+    bookDao.insert(book.getTitle());
+    Books selectedB = bookDao.selectByTitle(book.getTitle());
+
+    authorDao.insert(author.getName());
+    Author selectedA = authorDao.selectByName(author.getName());
+
+    daoBookAuth.insert(selectedB.getId(), selectedA.getId());
+
+    List<BooksAuthors> list = daoBookAuth.selectByIdBook(selectedB.getId());
+    for (BooksAuthors item : list) {
+      Assert.assertEquals(item.getIdBook(), selectedB.getId());
+      Assert.assertEquals(item.getIdAuthor(), selectedA.getId());
+    }
+
+    daoBookAuth.delete(selectedB.getId(), selectedA.getId());
+    authorDao.delete(selectedA.getId());
+    bookDao.delete(selectedB.getId());
+  }
+
+  /** Method: selectByIdAuthor(int idAuthor) */
+  @Test
+  public void testSelectByIdAuthor() {
+    bookDao.insert(book.getTitle());
+    Books selectedB = bookDao.selectByTitle(book.getTitle());
+
+    authorDao.insert(author.getName());
+    Author selectedA = authorDao.selectByName(author.getName());
+
+    daoBookAuth.insert(selectedB.getId(), selectedA.getId());
+
+    List<BooksAuthors> list = daoBookAuth.selectByIdAuthor(selectedA.getId());
+    for (BooksAuthors item : list) {
+      Assert.assertEquals(item.getIdBook(), selectedB.getId());
+      Assert.assertEquals(item.getIdAuthor(), selectedA.getId());
+    }
+
+    daoBookAuth.delete(selectedB.getId(), selectedA.getId());
+    authorDao.delete(selectedA.getId());
+    bookDao.delete(selectedB.getId());
+  }
+
+  /** Method: selectAll() */
+  @Test
+  public void testSelectAll() {
+    bookDao.insert(book.getTitle());
+    Books selectedB = bookDao.selectByTitle(book.getTitle());
+
+    authorDao.insert(author.getName());
+    Author selectedA = authorDao.selectByName(author.getName());
+
+    daoBookAuth.insert(selectedB.getId(), selectedA.getId());
+
+    List<BooksAuthors> list = daoBookAuth.selectByIdAuthor(selectedA.getId());
+    boolean contained = false;
+    for (BooksAuthors item : list) {
+      if (item.getIdBook() == selectedB.getId() && item.getIdAuthor() == selectedA.getId()) {
+        contained = true;
+      }
+    }
+    Assert.assertTrue(contained);
+
+    daoBookAuth.delete(selectedB.getId(), selectedA.getId());
+    authorDao.delete(selectedA.getId());
+    bookDao.delete(selectedB.getId());
+  }
+}
