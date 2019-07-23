@@ -16,7 +16,6 @@ import static java.time.temporal.ChronoUnit.DAYS;
 /** */
 public class BookService {
   private Connection connection;
-  //    private boolean available;
 
   /**  */
   public BookService() {
@@ -193,7 +192,13 @@ public class BookService {
     }
     return bookDto;
   }
-  // 1
+  // 1\
+  /**
+   * Checks and return one of a specified book and show how many available.
+   *
+   * @param title of a book for searching.
+   * @return a bookDto contained the book title and quantity of available  .
+   */
   public BookDto findBookByTitle(String title) {
 
     BookDto bookDto = new BookDto();
@@ -220,6 +225,12 @@ public class BookService {
   }
 
   // 2
+  /**
+   * Checks and return one of a specified book.
+   *
+   * @param author of a book for searching.
+   * @return a bookDto contained the title, name of a author .
+   */
   public List<BookDto> findBooksByAuthor(String author) {
     BookDto bookDto;
     List<BookDto> listBooksDto = new ArrayList<>();
@@ -248,7 +259,6 @@ public class BookService {
     return listBooksDto;
   }
 
-
   /**
    * Checks and return all copies of a specified book with their availability.
    *
@@ -261,10 +271,10 @@ public class BookService {
 
     try {
       PreparedStatement preparedStatement =
-              connection.prepareStatement(
-                      "SELECT id_copy, available from book_copies\n"
-                              + "JOIN books ON books.id = book_copies.id_book\n"
-                              + "WHERE books.title = ?");
+          connection.prepareStatement(
+              "SELECT id_copy, available from book_copies\n"
+                  + "JOIN books ON books.id = book_copies.id_book\n"
+                  + "WHERE books.title = ?");
 
       preparedStatement.setString(1, title);
       ResultSet resultSet = preparedStatement.executeQuery();
