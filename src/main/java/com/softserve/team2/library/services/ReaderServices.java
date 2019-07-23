@@ -14,14 +14,20 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/** The class provides method to retrieve data from the database. */
 public class ReaderServices {
+
+  /** Formats a string received from request. */
   private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+  /** Provides connection to the database. */
   private Connection connection;
 
+  /** The constructor initializes <code>connection</code>. */
   public ReaderServices() {
     connection = Connector.getConnection();
   }
 
+  /** @return a list of readers how have some not returned books */
   public List<ReaderDto> getBlackList() {
     String quary =
         "SELECT library.readers.id, library.readers.name, library.readers.birthday FROM library.readers\n"
@@ -46,7 +52,12 @@ public class ReaderServices {
     return list;
   }
 
-  // 8
+  /**
+   * Creates a request to the database to retrieve all readers names and their registration dates,
+   * avarige age of all readers and
+   *
+   * @return a list of all readers.
+   */
   public List<ReaderDto> fullStatisticsOfReaders(String dateFrom, String dateTo) {
     ReaderDto readerDto;
     List<ReaderDto> listReadersDto = new ArrayList<>();
@@ -168,6 +179,12 @@ public class ReaderServices {
     return readerDto;
   }
 
+  /**
+   * Retrieves information about the reader's story information.
+   *
+   * @param reader's name
+   * @return a list of books which the readers took.
+   */
   public List<BookDto> getReadBook(String reader) {
     List<BookDto> listBookDto = new ArrayList<>();
     BookDto bookDto;
@@ -195,6 +212,13 @@ public class ReaderServices {
     return listBookDto;
   }
 
+  /**
+   * Retrieves information about the reader's story and returns a list of books that reader did not
+   * return.
+   *
+   * @param reader's name
+   * @return a list of books which the readers took and didn't return.
+   */
   public List<BookDto> getNotReturnedBook(String reader) {
     List<BookDto> listBookDto = new ArrayList<>();
     BookDto bookDto;
@@ -223,6 +247,10 @@ public class ReaderServices {
     return listBookDto;
   }
 
+  /**
+   * @param reader'name
+   * @return ReaderDto object with information about first time of book taking.
+   */
   public ReaderDto getRegisterDate(String reader) {
     BookDto bookDto;
     ReaderDto readerDto = new ReaderDto();
@@ -248,11 +276,15 @@ public class ReaderServices {
     return readerDto;
   }
 
+  /**
+   * Retrieve an information about all readers registration dates
+   *
+   * @return a list of ReaderDto
+   */
   public List<ReaderDto> getListOfReadersRegistration() {
     ReaderDto readerDto;
     List<ReaderDto> listReadersDto = new ArrayList<>();
     LocalDate localDateNow = LocalDate.now();
-
 
     try {
 
@@ -272,50 +304,60 @@ public class ReaderServices {
                 localDateNow));
         listReadersDto.add(readerDto);
       }
-        preparedStatement =
-                connection.prepareStatement(
-                        "SELECT AVG(YEAR(NOW()) - YEAR(library.readers.birthday)) as avg_age FROM library.readers;");
-        resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-            ReaderDto.averageAgeOfReaders = resultSet.getDouble("avg_age");
-        }
+      preparedStatement =
+          connection.prepareStatement(
+              "SELECT AVG(YEAR(NOW()) - YEAR(library.readers.birthday)) as avg_age FROM library.readers;");
+      resultSet = preparedStatement.executeQuery();
+      if (resultSet.next()) {
+        ReaderDto.averageAgeOfReaders = resultSet.getDouble("avg_age");
+      }
 
     } catch (SQLException e) {
       e.printStackTrace();
     }
-  return listReadersDto;}
+    return listReadersDto;
+  }
 
+  /**
+   * @param fromDate start of period
+   * @param toDate end of period
+   * @return a ReaderDto object with the information about average count of books taking related to
+   *     the period
+   */
   public ReaderDto getAverageAppealByPeriod(String fromDate, String toDate) {
-    ReaderDto readerDto= new ReaderDto();
+    ReaderDto readerDto = new ReaderDto();
     PreparedStatement preparedStatement;
     try {
-      preparedStatement = connection.prepareStatement(
+      preparedStatement =
+          connection.prepareStatement(
               "SELECT AVG(counter.take_count) "
-                      + "FROM\n"
-                      + "(SELECT COUNT(library.reader_story.time_take) as take_count FROM library.reader_story\n"
-                      + "WHERE library.reader_story.time_take "
-                      + "BETWEEN ? AND ? \n"
-                      + "GROUP BY library.reader_story.id_reader)"
-                      + "AS counter;");
+                  + "FROM\n"
+                  + "(SELECT COUNT(library.reader_story.time_take) as take_count FROM library.reader_story\n"
+                  + "WHERE library.reader_story.time_take "
+                  + "BETWEEN ? AND ? \n"
+                  + "GROUP BY library.reader_story.id_reader)"
+                  + "AS counter;");
 
-    preparedStatement.setString(1, fromDate);
-    preparedStatement.setString(2, toDate);
+      preparedStatement.setString(1, fromDate);
+      preparedStatement.setString(2, toDate);
       ResultSet resultSet = preparedStatement.executeQuery();
-    if (resultSet.next()) {
-      readerDto.setAverageAppeal( resultSet.getInt(1));
-    }
+      if (resultSet.next()) {
+        readerDto.setAverageAppeal(resultSet.getInt(1));
+      }
 
-  } catch (SQLException e) {
-    e.printStackTrace();
-  }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return readerDto;
   }
 
+  /** @return an average age of all readers*/
   public ReaderDto getAverageAgeOfReaders() {
-    ReaderDto readerDto=new ReaderDto();
+    ReaderDto readerDto = new ReaderDto();
     PreparedStatement preparedStatement;
     try {
-      preparedStatement = connection.prepareStatement(
+      preparedStatement =
+          connection.prepareStatement(
               "SELECT AVG(YEAR(NOW()) - YEAR(library.readers.birthday)) as avg_age FROM library.readers;");
 
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -327,7 +369,6 @@ public class ReaderServices {
       e.printStackTrace();
     }
 
-
-
-    return readerDto;}
+    return readerDto;
+  }
 }
