@@ -16,19 +16,11 @@ public class BookServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    System.out.println(" я в сервлеті" );
     BookService bookService = new BookService();
-//    String bookTitle = "Effective Java";
-    String bookTitle=req.getParameter("title");
+    String bookTitle = req.getParameter("title");
 
     BookDto bookDto = bookService.findBookByTitle(bookTitle);
-    System.out.println(bookDto);
-    //        BookDto bookDto= new BookDto();
-    //        bookDto.setTitle("Effective Java");
-    //        bookDto.setAvailable(6);
-    //            req.setAttribute("bookDto",bookDto);
     req.setAttribute("bookDto", bookDto);
-    //            req.setAttribute("ava",bookDto);
     req.getRequestDispatcher("WEB-INF/views/availableBook.jsp").forward(req, resp);
   }
 }

@@ -12,17 +12,18 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="../../menu.jsp"%>
+<%@include file="/menu.jsp"%>
 
-<h1>Reader statistic</h1>
-<form action="userStatisticName"method="get">
-    Reader name:<br>
-    <input type="text" value="Susan Goodwin" name="name"><br>
+<form action="userStatisticName"method="get" style=" text-align: center; padding-top: 50px">
+    <p>Введіть ім'я користувача</p>
+    <input type="text" value="Susan Goodwin" name="name">
+    <br>
     <select name="select">
         <option value="value1"selected>Які книжки брав</option>
         <option value="value2" >Які на руках</option>
         <option value="value3">Дата реєстрації</option>
     </select>
+    <br>
     <input type="submit" value="Submit">
 </form>
 </body>
