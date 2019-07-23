@@ -1,5 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
   User: Marian
@@ -7,30 +5,30 @@
   Time: 13:34
   To change this template use File | Settings | File Templates.
 --%>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}tableCss.css">
 <html>
 <head>
-    <title>Author books</title>
+    <title>Title</title>
+    <%@include file="/menu.jsp"%>
 </head>
 <body>
-<%@include file="../../menu.jsp"%>
-<div>
-    <table >
+    <table class="simple-little-table" cellspacing='0' style="text-align: center; margin: auto; margin-top: 50px">
+        <thead>
         <tr>
-            <th>Book title</th>
-            <th>Author</th>
-        </tr>
-        <c:forEach items="${listBookDto}" var="reader" >
-           <tr>
-              <td>
-                  ${reader.title}
-               </td>
-               <td>
-                   ${reader.author}
-               </td>
-           </tr>
+            <th>Назва книги</th>
+            <th>Автор</th>
+        </tr><!-- Table Header -->
+        </thead>
+        <tbody>
+        <c:forEach var="reader" items="${listBookDto}">
+            <tr>
+                <td><c:out value="${reader.title}"/></td>
+                <td><c:out value="${reader.author}"/></td>
+            </tr>
         </c:forEach>
+        </tbody>
     </table>
-</div>
 </body>
 </html>

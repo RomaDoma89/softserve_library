@@ -7,29 +7,30 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %><html>
+<link rel="stylesheet" href="${pageContext.request.contextPath}tableCss.css">
 <head>
     <title>Title</title>
 </head>
 <body>
-<%@include file="../../menu.jsp"%>
-<h1>Books witch isn`t returned by reader:${name}</h1>
-<div>
-    <table >
+<%@include file="/menu.jsp"%>
+<table class="simple-little-table" cellspacing='0' style="text-align: center; margin: auto; margin-top: 50px">
+    <thead>
+    <tr>
+        <th text>Книги які читач не повернув: ${name}</th>
+    </tr>
+    <tr>
+        <th>Книга #</th>
+        <th>Назва книги</th>
+    </tr><!-- Table Header -->
+    </thead>
+    <tbody>
+    <c:forEach var="reader" varStatus="loop" items="${listOfBook}">
         <tr>
-            <th>Book #</th>
-            <th>Book title</th>
+            <td><c:out value="${loop.index+1}"/></td>
+            <td><c:out value="${reader.title}"/></td>
         </tr>
-        <c:forEach items="${listOfBook}" var="reader" varStatus="loop" >
-            <tr>
-                <td>
-                        ${loop.index+1}
-                </td>
-                <td>
-                        ${reader.title}
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
-</div>
+    </c:forEach>
+    </tbody>
+</table>
 </body>
 </html>

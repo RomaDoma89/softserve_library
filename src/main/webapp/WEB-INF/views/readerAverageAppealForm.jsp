@@ -11,9 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="../../menu.jsp"%>
-<h1>Fill in scope of period in  format "yyyy-mm-dd"</h1>
-<form action="readerAverageAppeal"method="get">
+<%@include file="/menu.jsp"%>
+<p style="text-align: center">Введіть дані в наступному форматі: "yyyy-mm-dd"</p>
+<form action="readerAverageAppeal"method="get" style=" text-align: center; padding-top: 50px">
     from:<br>
     <input type="text" value="2015-01-11" name="fromDate"><br>
     to:<br>

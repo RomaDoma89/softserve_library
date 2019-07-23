@@ -14,10 +14,12 @@
 </head>
 <body>
 <%@include file="../../menu.jsp"%>
-<h1>Find book by title</h1>
-<form action="bookTitle"method="get" class="dws-menu">
-    Title:<br>
-    <input type="text" value="Effective Java" name="title"><br>
+<form action="bookTitle"method="get" style="text-align: center; padding-top: 50px">
+    <p>Введіть назву книги :</p>
+    <br>
+    <input type="text" value="Effective Java" name="title">
+    <br>
+    <br>
     <input type="submit" value="Submit">
 </form>
 </body>
