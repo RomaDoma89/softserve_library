@@ -33,7 +33,7 @@ public class ReaderStoryDao {
       preparedStatement.setInt(1, bookId);
       preparedStatement.setInt(1, copyId);
       preparedStatement.setString(1, timeTake);
-      preparedStatement.executeQuery();
+      preparedStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }

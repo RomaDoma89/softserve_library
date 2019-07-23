@@ -20,19 +20,14 @@
 <header>
     <nav class="dws-menu">
         <ul>
-            <li><a href=""><i class="fa fa-home"></i>Всі книги</a></li>
-            <li><a href=""></i>Пошук за параметром</a>
+            <li><a href="#"><i class="fa fa-home"></i>Всі книги</a></li>
+            <li><a href="#"></i>Пошук за параметром</a>
                 <ul>
-                    <li><a href="">Знайти чи доступна книга</a>
+                    <li><a href="availableBookForm">Знайти чи доступна книга</a>
                     </li>
-                    <li><a href="">Вивести всі книжки по автору</a>
+                    <li><a href="booksByAuthorForm">Вивести всі книжки по автору</a>
                     </li>
-                    <li><a href="#">Інформація про користувача</a>
-                        <ul>
-                            <li><a href="#">Які книжки брав</a></li>
-                            <li><a href="#">Які на руках</a></li>
-                            <li><a href="#">Дата реєстрації</a></li>
-                        </ul>
+                    <li><a href="userStatistic">Інформація про користувача</a>
                     </li>
                     <li><a href="inputPeriod">Дістати список книг виданих по періоду</a></li>
                     <li><a href="inputBookStat">Статистика по певній книзі(к-ть використань)</a>
@@ -42,9 +37,9 @@
                     <li><a href="getBlackListServlet">Отримати "чорний список" користувачів</a></li>
                     <li><a href="#">Статистика по читачам</a>
                         <ul>
-                            <li><a href="#">Середній час читання</a></li>
-                            <li><a href="#">Середній вік </a></li>
-                            <li><a href="#">Відвідування</a></li>
+                            <li><a href="reader_registration">Середній час читання</a></li>
+                            <li><a href="averageAgeOfReader">Середній вік </a></li>
+                            <li><a href="appealStatistic">Кількість звернень </a></li>
                         </ul>
                     </li>
                     <li><a href="inputAvgAge">Ортимати середній вік читачів</a>

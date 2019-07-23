@@ -2,10 +2,21 @@ package com.softserve.team2.library.dto;
 
 import java.time.LocalDate;
 import java.util.List;
+/**
+ * Transfer data object for Author.
+ *
+ * @author Marian Milian
+ * @version 1.0
+ */
 
 public class ReaderDto {
   public static double averageTimeOfUsing;
   public static double averageAgeOfReaders;
+  private double averageAppeal;
+  private double averageAge;
+
+
+
   private int user_id;
   private String name;
   private String author;
@@ -15,12 +26,29 @@ public class ReaderDto {
   private long dayOfUsingLibrary;
   private LocalDate localDate;
 
+
+  public double getAverageAge() {
+    return averageAge;
+  }
+
+  public void setAverageAge(double averageAge) {
+    this.averageAge = averageAge;
+  }
+
   public static double getAverageTimeOfUsing() {
     return averageTimeOfUsing;
   }
 
   public static void setAverageTimeOfUsing(double averageTimeOfUsing) {
     ReaderDto.averageTimeOfUsing = averageTimeOfUsing;
+  }
+
+  public double getAverageAppeal() {
+    return averageAppeal;
+  }
+
+  public void setAverageAppeal(double averageAppeal) {
+    this.averageAppeal = averageAppeal;
   }
 
   public static double getAverageAgeOfReaders() {
@@ -116,27 +144,19 @@ public class ReaderDto {
 
   @Override
   public String toString() {
-    return "ReaderDto{"
-        + "user_id="
-        + user_id
-        + ", name='"
-        + name
-        + ", author='"
-        + author
-        + ", title='"
-        + title
-        + ", avgAge="
-        + avgAge
-        + ", dateOfBirthday='"
-        + dateOfBirthday
-        + ", dayOfUsingLibrary="
-        + dayOfUsingLibrary
-        + ", localDate="
-        + localDate
-        + ", listOfReaderBooks="
-        + listOfReaderBooks
-        + ", listOfNotReturnedBooks="
-        + listOfNotReturnedBooks
-        + '}';
+    return "ReaderDto{" +
+            "averageAppeal=" + averageAppeal +
+            ", averageAge=" + averageAge +
+            ", user_id=" + user_id +
+            ", name='" + name + '\'' +
+            ", author='" + author + '\'' +
+            ", title='" + title + '\'' +
+            ", avgAge=" + avgAge +
+            ", dateOfBirthday='" + dateOfBirthday + '\'' +
+            ", dayOfUsingLibrary=" + dayOfUsingLibrary +
+            ", localDate=" + localDate +
+            ", listOfReaderBooks=" + listOfReaderBooks +
+            ", listOfNotReturnedBooks=" + listOfNotReturnedBooks +
+            '}';
   }
 }

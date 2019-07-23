@@ -1,10 +1,11 @@
 package com.softserve.team2.library.dao;
 
-import com.softserve.team2.library.entities.Author;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 import java.util.List;
+
+import com.softserve.team2.library.entities.Author;
 
 /**
  * AuthorDao Tester.
@@ -30,6 +31,7 @@ public class AuthorDaoTest {
   public void testInsert() {
     dao.insert(author.getName());
     Author selected = dao.selectByName(author.getName());
+
     dao.delete(selected.getId());
   }
 
@@ -39,6 +41,7 @@ public class AuthorDaoTest {
     dao.insert(author.getName());
     Author selected = dao.selectByName(author.getName());
     Assert.assertEquals(author.getName(), selected.getName());
+
     dao.delete(selected.getId());
   }
 
@@ -49,6 +52,7 @@ public class AuthorDaoTest {
     Author selectedByName = dao.selectByName(author.getName());
     Author selectedById = dao.selectById(selectedByName.getId());
     Assert.assertEquals(selectedByName.getId(), selectedById.getId());
+
     dao.delete(selectedById.getId());
   }
 
@@ -65,6 +69,7 @@ public class AuthorDaoTest {
       }
     }
     Assert.assertTrue(contained);
+
     dao.delete(author.getId());
   }
 

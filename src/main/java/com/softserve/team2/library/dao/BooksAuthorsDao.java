@@ -33,7 +33,7 @@ public class BooksAuthorsDao {
       PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT);
       preparedStatement.setInt(1, idBook);
       preparedStatement.setInt(2, idAuthor);
-      preparedStatement.executeQuery();
+      preparedStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }

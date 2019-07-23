@@ -35,7 +35,7 @@ public class BookCopiesDao {
       preparedStatement.setInt(1, idCopy);
       preparedStatement.setInt(2, idBook);
       preparedStatement.setBoolean(3, available);
-      preparedStatement.executeQuery();
+      preparedStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
