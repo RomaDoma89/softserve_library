@@ -46,55 +46,6 @@ public class ReaderServices {
     return list;
   }
 
-  //  public ReaderDto statisticOfReader(String name) {
-  //    ReaderDto readerDto = new ReaderDto();
-  //    readerDto.setName(name);
-  //    List<String> titles;
-  //    try {
-  //      titles = new ArrayList<>();
-  //      PreparedStatement preparedStatement =
-  //          connection.prepareStatement(
-  //              "SELECT library.books.id, library.books.title\n"
-  //                  + "FROM library.books\n"
-  //                  + "JOIN library.reader_story ON library.books.id =
-  // library.reader_story.id_book\n"
-  //                  + "JOIN library.readers ON library.readers.id =
-  // library.reader_story.id_reader\n"
-  //                  + "WHERE name = ?\n"
-  //                  + " AND time_return IS NULL;");
-  //      preparedStatement.setString(1, name);
-  //      ResultSet resultSet = preparedStatement.executeQuery();
-  //      while (resultSet.next()) {
-  //        titles.add(resultSet.getString("title"));
-  //      }
-  //      readerDto.setListOfReaderBooks(titles);
-  //    } catch (SQLException e) {
-  //      e.printStackTrace();
-  //    }
-  //
-  //    try {
-  //
-  //      PreparedStatement preparedStatement =
-  //          connection.prepareStatement(
-  //              "SELECT MIN(library.reader_story.time_take)as registration_day\n"
-  //                  + "FROM library.reader_story\n"
-  //                  + "JOIN library.readers ON library.readers.id =
-  // library.reader_story.id_reader\n"
-  //                  + "WHERE name =?;");
-  //      preparedStatement.setString(1, name);
-  //      ResultSet resultSet = preparedStatement.executeQuery();
-  //      if (resultSet.next()) {
-  //        readerDto.setLocalDate(LocalDate.parse(resultSet.getString("registration_day"),
-  // formatter));
-  //      }
-  //
-  //    } catch (SQLException | NullPointerException e) {
-  //      e.printStackTrace();
-  //    }
-  //
-  //    return readerDto;
-  //  }
-
   // 8
   public List<ReaderDto> fullStatisticsOfReaders(String dateFrom, String dateTo) {
     ReaderDto readerDto;

@@ -27,24 +27,6 @@ public class ReaderServicesWrongDataTest {
   @After
   public void after() {}
 
-  /** Method: statisticOfReader(String name) */
-  @Test
-  public void testStatisticOfWrongReaderName() {
-    ReaderDto dto = readerServices.statisticOfReader(WRONG_DATA);
-    Assert.assertEquals(0, dto.getListOfReaderBooks().size());
-    Assert.assertEquals(0, dto.getListOfNotReturnedBooks().size());
-    Assert.assertNull(dto.getLocalDate());
-  }
-
-  /** Method: statisticOfReader(String name) */
-  @Test
-  public void testStatisticOfNullReaderName() {
-    ReaderDto dto = readerServices.statisticOfReader(null);
-    Assert.assertEquals(0, dto.getListOfReaderBooks().size());
-    Assert.assertEquals(0, dto.getListOfNotReturnedBooks().size());
-    Assert.assertNull(dto.getLocalDate());
-  }
-
   /** Method: fullStatisticsOfReaders(String dateFrom, String dateTo) */
   @Test
   public void testFullStatisticsOfReadersWithWrongDates() {
