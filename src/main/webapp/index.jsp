@@ -3,20 +3,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: Marian
-  Date: 21.07.2019
-  Time: 9:39
+  Date: 22.07.2019
+  Time: 14:26
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Available book</title>
+    <title>Title</title>
 </head>
 <body>
-<%@include file="../../menu.jsp"%>
-
-<p>Title: ${bookDto.title}</p>
-<p>Available: ${bookDto.available}</p>
-
-
+<jsp:include page="menu.jsp"/>
 </body>
 </html>

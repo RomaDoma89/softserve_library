@@ -1,4 +1,11 @@
 package com.softserve.team2.library.dto;
+/**
+ * Transfer data object for Author.
+ *
+ * @author Marian Milian
+ * @version 1.0
+ */
+
 
 public class BookDto {
   private int id;
